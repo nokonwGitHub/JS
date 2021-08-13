@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class BrowserDetector {
+        constructor() {
+            // IE6-IE10的条件编译
+            this.isIE_Gte6Lte10 = /*@cc_on!@*/false;
+            // IE7-IE11 测试documentMode
+            this.isIE_Gte7Lte11 = !!document.documentMode;
+            // Edge 20及以上版本  测试StyleMedia构造函数
+            this.isEdge_Get20 = !!window.StyleMedia;
+
+            // Firefox专有扩展安装API
+            this.isFirefox_Gtel = typeof InstallTrigger !== "undefined";
+
+            // 测试chrome对象 及其webstore属性。
+            // Opera有些版本有chrome 属性但没有 window.chrome.webstore
+            // 所有Chrome版本都支持 都有 window.chrome 但也不一定有window.chrome.webstore
+            this.isChrom_Gtel = !!window.chrome  // && !!window.chrome.webstore;
+
+            // Safari早期版本会给构造函数的标签追加 Constructor
+            // window.Element.toString() // [object ElementConstructor]
+            // Safari 3-9.1
+            this.isSafari_Gte3Lte9_1 = /constructor/i.test(window.Element.toString());
+
+            // 推送通知API暴露在window对象
+            // 使用默认参数值以免对undefined调用toString
+            // Safari 7.1及其以上版本
+            this.isSafari_Gte7_1 = (({pushNotification = {}} = {}) => pushNotification.toString() === "[object SafariRemoteNotification]")(window.safari)
+
+            // 测试addons属性
+            // Opera20及其以上版本
+            this.isOpera_Gte20 = !!window.opr && !!window.opr.addons;
+        }
+
+        isIE() {
+            return this.isIE_Gte6Lte10 || this.isIE_Gte7Lte11;
+        }
+
+        isEdge() {
+            return this.isEdge_Get20;
+        }
+
+        isFirefox() {
+            return this.isFirefox_Gtel;
+        }
+
+        isChrome() {
+            return this.isChrom_Gtel && !this.isOpera_Gte20;
+        }
+
+        isSafari() {
+            return this.isSafari_Gte7_1 || this.isSafari_Gte3Lte9_1
+        }
+
+        isOpera() {
+            return this.isOpera_Gte20;
+        }
+    }
+
+</script>
+</html>
