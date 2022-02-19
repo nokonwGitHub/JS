@@ -1,0 +1,11 @@
+{
+  "name": "webpack_sta",
+  "version": "1.0.0",
+  "scripts": {
+    "runJsFunc": "webpack --config ./config/config.func.js",
+    "runJsObj": "webpack --config ./config/config.obj.js",
+    "runJsPro": "webpack --config ./config/config.promise.js"
+  },
+  "dependencies": {
+  }
+}

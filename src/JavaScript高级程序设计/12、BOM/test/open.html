@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button id="open">打开</button>
+</div>
+<div>
+    <button hidden id="move">移动</button>
+</div>
+</body>
+
+<script>
+    function $(str) {
+        return document.querySelector(str)
+    }
+
+    console.log(window.name)
+    let wroWin = null
+    if (window.name !== "topFrame") {
+        $("#open").addEventListener("click", () => {
+            wroWin = window.open("./open.html", "topFrame", "height=500,width=500,left=150,top=150,Menubar='no',status='no',resizeable='no'", false);
+            if (wroWin) {
+                $("#move").hidden = false;
+            }
+        });
+        let i = 0
+        $("#move").addEventListener("click", () => {
+            wroWin?.moveBy(i, i);
+            i += 100;
+        })
+        setTimeout(() => {
+          $("#open").click();
+        }, 1000)
+    }
+</script>
+</html>

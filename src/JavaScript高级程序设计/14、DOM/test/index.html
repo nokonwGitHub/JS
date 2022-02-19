@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<a href="./sss">a</a>
+<a href="./ppp">b</a>
+<a href="./jjj">c</a>
+
+
+<ul id="ul" class="sss" fs_dd="sss">
+    <li id="one"></li>
+    <li id="two"></li>
+</ul>
+</body>
+
+<script>
+    console.log(Node.prototype)
+
+    console.log(document.title)
+    document.title = "test"
+
+    console.log(document.links)
+    console.log(document.constructor.prototype)
+    console.log(document.currentScript)
+
+    const ul = document.getElementById("ul")
+    console.log(ul.childNodes);
+    const text = document.createTextNode("hello world")
+    const li3 = document.createElement("li")
+    ul.appendChild(text)
+    ul.appendChild(li3)
+
+    console.log(ul.getAttribute("id"))
+    console.log(ul.getAttribute("class"))
+
+    let att = ul.attributes
+
+    console.log(att)
+
+    console.log(text.data)
+
+    text.appendData("!!!!")
+
+    text.deleteData(0, 1)
+    text.insertData(0, "H")
+
+    text.replaceData(0, 1, "HH")
+
+    text.splitText(6)
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body style="padding: 0;margin: 0;">
+<button id="one"> getDisplayMedia</button>
+<div></div>
+<video id="test" autoplay></video>
+<canvas> </canvas>
+</body>
+<script>
+    (async () => {
+        console.log(navigator.mediaDevices)
+        navigator.mediaDevices.ondevicechange = (content, evt) => {
+            console.log(content, evt)
+        }
+        let p = await navigator.mediaDevices.enumerateDevices()
+        console.log(p)
+
+        let cons = navigator.mediaDevices.getSupportedConstraints()
+        console.log(cons)
+    })()
+    let stream = new MediaStream();
+    const canvasElt = document.querySelector('canvas');
+    let stream2 = canvasElt.captureStream(25);
+    //截取到媒体流
+
+    document.querySelector("#one").addEventListener("click", async () => {
+        stream = await navigator.mediaDevices.getDisplayMedia({video: true});
+        console.log(stream)
+
+        document.getElementById("test").srcObject = stream2;
+        console.log(stream.getAudioTracks())
+    })
+</script>
+</html>

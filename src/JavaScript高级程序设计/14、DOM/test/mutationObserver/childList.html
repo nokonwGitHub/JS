@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    const app = document.createElement("div")
+    const btn = document.createElement("button")
+    btn.innerText = "交换"
+    const observer = new MutationObserver(mutations => {
+        console.log(mutations)
+    });
+    observer.observe(app, {
+        childList: true
+    });
+    const span = document.createElement("span")
+    const span2 = document.createElement("span")
+    span.innerHTML = "span1"
+    span2.innerHTML = "span2"
+    app.appendChild(span)
+    app.appendChild(span2)
+
+    btn.addEventListener("click", evt => {
+        app.insertBefore(span2, span) // 报告次变化 span2 先被移除  后被添加
+    })
+
+    document.body.insertBefore(app, document.body.firstChild)
+    document.body.appendChild(btn);
+</script>
+</html>

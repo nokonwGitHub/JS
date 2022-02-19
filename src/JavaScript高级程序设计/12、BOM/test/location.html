@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function searchToJson(str = location.search) {
+        if (str.length > 0) {
+            if (URLSearchParams) {
+                const qs = new URLSearchParams(str);
+                return Object.fromEntries(qs);
+            }
+            const obj = {}
+            str = str.substring(1)
+            str.split("&").forEach(value => {
+                value = value.split("=");
+                obj[decodeURIComponent(value[0])] = decodeURIComponent(value[1])
+            })
+            return obj;
+        }
+        return null
+    }
+
+    console.log(searchToJson("?name=lise&age=20&sort=1,2,3,4"))
+
+    function jsonToSearch(json = {}) {
+        let str = "?"
+        if (json) {
+            if (URLSearchParams) {
+                const search = new URLSearchParams(json)
+                return str + search.toString()
+            } else {
+                for (let [key, val] of Object.entries(json)) {
+                    str += `${encodeURIComponent(key)}=${encodeURIComponent(val.toString())}&`
+                }
+                return str.slice(0, -2);
+            }
+        }
+        return str
+    }
+
+    console.log(jsonToSearch({name: 10, age: 20, sort: [1, 2, 3, 4]}))
+</script>
+</body>
+</html>

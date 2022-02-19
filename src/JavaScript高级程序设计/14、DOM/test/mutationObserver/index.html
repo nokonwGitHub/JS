@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="one"></div>
+<div id="two"></div>
+</body>
+<script>
+    // {
+    //     let observer = new MutationObserver((mutations, observer) => {
+    //         console.log(mutations) //
+    //     });
+    //     observer.observe(document.body, {
+    //         attributes: true
+    //     })
+    //
+    //     document.body.className = "change"
+    //     document.body.id = "change"
+    //     console.log("change body class")
+    // }
+</script>
+
+<script>
+    {
+        let observer = new MutationObserver((mutations, observer) => {
+            console.log(mutations.map(value => {
+                return value.target
+            }))
+        });
+        let one = document.querySelector("#one");
+        let two = document.querySelector("#two");
+        observer.observe(one, {
+            attributes: true
+        })
+        observer.observe(two, {
+            attributes: true
+        })
+        one.className = "one"
+        two.className = "two"
+
+        setTimeout(() => {
+            observer.disconnect() // 停止观察所有目标
+            one.className = "one1"
+            two.className = "two2"
+        }, 0)
+
+        setTimeout(() => {
+            observer.observe(one, {
+                attributes: true
+            }) // 停止观察所有目标
+            one.className = "one1"
+            two.className = "two2"
+        }, 0)
+    }
+</script>
+</html>

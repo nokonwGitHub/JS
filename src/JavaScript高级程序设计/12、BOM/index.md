@@ -65,10 +65,12 @@ interface ScrollToOptions {
 
 `window.open`可以用来导航到指定的`URL`，也可以用于打开新窗口。 接受4个值：
 
-- 要加载的URL。类似`a`标签的`href`
-- 目标窗口。类似`a`标签的`target`
-- 特性字符串。逗号分割的设置字符串，如：`height=400,width=400,left=300,top=0`
-- 新窗口在历史记录中是否代替当前加载页面的布尔值。
+`open(url?: string, target?: string, features?: string, replace?: boolean): Window | null;`
+
+- `url` 要加载的URL。类似`a`标签的`href`
+- `target` 目标窗口。类似`a`标签的`target`
+- `features` 特性字符串。逗号分割的设置字符串，如：`height=400,width=400,left=300,top=0`
+- `replace` 新窗口在历史记录中是否代替当前加载页面的布尔值。
 
 `window.open` 返回一个新建窗口的引用，方便对新窗口进行控制。
 

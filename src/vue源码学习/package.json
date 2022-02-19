@@ -1,0 +1,9 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "scripts": {
+    "run": "webpack --config ./webpack/config.js"
+  },
+  "dependencies": {
+  }
+}

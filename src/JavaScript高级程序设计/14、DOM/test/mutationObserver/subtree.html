@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    const body = document.body;
+    const app = document.createElement("div");
+    const btn = document.createElement("button")
+    const btn2 = document.createElement("button")
+    const app2 = document.createElement("div")
+    btn.innerText = "改变type"
+    btn2.innerText = "移动"
+
+    const observe = new MutationObserver(mutations => {
+        console.log(mutations)
+    })
+    const sub1 = document.createElement("input");
+    app2.appendChild(sub1);
+    sub1.setAttribute("type", "input")
+    observe.observe(app2, {subtree: true, attributes: true, attributeOldValue: true})
+    sub1.setAttribute("type", "time")
+
+    app.appendChild(sub1);
+    sub1.setAttribute("type", "radio")
+
+    btn.addEventListener("click", ev => {
+        sub1.setAttribute("type", "color")
+    })
+
+    btn2.addEventListener("click", ev => {
+        if (app2.contains(sub1)) {
+            app.appendChild(sub1)
+        } else {
+            app2.appendChild(sub1)
+        }
+    })
+
+    body.append(app, btn, btn2, app2)
+
+</script>
+</html>

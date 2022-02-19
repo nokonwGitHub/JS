@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+</body>
+
+<script>
+    const table = document.createElement("table");
+    table.border = "1"
+    table.width = "100%"
+    table.cellPadding = "0"
+    table.cellSpacing = "0"
+
+    const caption = table.createCaption();
+    caption.innerText = "表格 caption"
+    const thead = table.createTHead();
+
+    thead.insertRow(0)
+    thead.rows[0].insertCell(0)
+    thead.rows[0].cells[0].appendChild(document.createTextNode("姓名"))
+    thead.rows[0].insertCell(1)
+    thead.rows[0].cells[1].appendChild(document.createTextNode("年龄"))
+
+    const tbody = table.createTBody();
+    tbody.insertRow(0);
+    tbody.rows[0].insertCell(0)
+    tbody.rows[0].cells[0].appendChild(document.createTextNode("小明"))
+    tbody.rows[0].insertCell(1)
+    tbody.rows[0].cells[1].appendChild(document.createTextNode("24"))
+
+
+    tbody.insertRow(1);
+    tbody.rows[1].insertCell(0)
+    tbody.rows[1].cells[0].appendChild(document.createTextNode("小红"))
+    tbody.rows[1].insertCell(1)
+    tbody.rows[1].cells[1].appendChild(document.createTextNode("25"))
+
+
+    const tfoot = table.createTFoot();
+
+    tfoot.appendChild(document.createTextNode("页脚"))
+
+    document.getElementById("app").appendChild(table)
+
+    console.log(table.rows)
+
+</script>
+
+</html>
