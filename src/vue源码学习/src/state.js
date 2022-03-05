@@ -1,8 +1,8 @@
 import { observe } from "./observer";
 
 export function initState(vm) {
-    const option = vm.$option
-    if (option.data) {
+    const options = vm.$options
+    if (options.data) {
         initData(vm)
     }
 }
@@ -25,7 +25,7 @@ export function initState(vm) {
  *
  * */
 function initData(vm) {
-    let data = vm.$option.data
+    let data = vm.$options.data
     data = vm._data = typeof data === "function" ? data.call(this) : data || {}
     for (const key in data) {
         proxy(vm, `_data`, key)

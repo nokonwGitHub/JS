@@ -754,7 +754,7 @@ switch (true || "sss") {
 
 # 函数
 
-在ECMAScript中函数是用 `function` 声明的。
+在`ECMAScript`中函数是用 `function` 声明的。
 
 ```javascript
 
